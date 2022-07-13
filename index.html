@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+</head>
+
+<body onload="genPass()">
+    <main class="flex items-center justify-center  bg-slate-100  h-screen">
+        <section class="w-7/12 mx-auto  rounded-xl">
+            <p class="text-blue-700 font-bold text-center">PASSWORD GENERATOR TOOL</p>
+            <h1 class="text-5xl text-center my-3 font-bold font-sans">Generate a secure password</h1>
+            <p class="text-center">Use our online password generator to instantly create a secure, random password.</p>
+
+
+            <!-- input area start -->
+            <div class="shadow-2xl border-b-4 border-b-green-400 mt-10 rounded-xl bg-white p-5 flex items-center">
+
+
+                <input type="text" name="" id="newPass" class="w-11/12">
+
+
+                <div class="w-1/12 flex justify-between">
+                    <svg class="text-3xl" fill="none" height="30px" viewBox="0 0 24 24" width="24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 7H7V5H13V7Z" fill="currentColor" />
+                        <path d="M13 11H7V9H13V11Z" fill="currentColor" />
+                        <path d="M7 15H13V13H7V15Z" fill="currentColor" />
+                        <path clip-rule="evenodd" d="M3 19V1H17V5H21V23H7V19H3ZM15 17V3H5V17H15ZM17 7V19H9V21H19V7H17Z"
+                            fill="currentColor" fill-rule="evenodd" />
+                    </svg>
+                    <svg onclick="genPass()" class="text-3xl" height="30px" id="Layer_1"
+                        style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16" width="16px"
+                        xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path
+                            d="M14,8c-0.609,0-0.898,0.43-1,0.883C12.635,10.516,11.084,13,8,13c-0.757,0-1.473-0.172-2.114-0.474L6.414,12  C6.773,11.656,7,11.445,7,11c0-0.523-0.438-1-1-1H3c-0.609,0-1,0.492-1,1v3c0,0.541,0.428,1,1,1c0.484,0,0.688-0.273,1-0.594  l0.408-0.407C5.458,14.632,6.685,15,8,15c4.99,0,7-4.75,7-5.938C15,8.336,14.469,8,14,8z M3,7.117C3.365,5.485,4.916,3,8,3  c0.757,0,1.473,0.171,2.114,0.473L9.586,4C9.227,4.344,9,4.555,9,5c0,0.523,0.438,1,1,1h3c0.609,0,1-0.492,1-1V2  c0-0.541-0.428-1-1-1c-0.484,0-0.688,0.273-1,0.594l-0.408,0.407C10.542,1.368,9.315,1,8,1C3.01,1,1,5.75,1,6.938  C1,7.664,1.531,8,2,8C2.609,8,2.898,7.57,3,7.117z" />
+                    </svg>
+                </div>
+            </div>
+            <!-- input area end -->
+
+            <!-- input options start  -->
+            <div class="shadow-2xl  mt-20 rounded-xl bg-white p-5 items-center">
+                <h1 class="text-2xl mb-3 font-bold">Customize your password</h1>
+                <hr>
+                <div class="flex w-full items-center ">
+                    <div class="slidecontainer w-9/12 flex items-center">
+                        <input type="text" id="demo" class=" border w-20 p-3 mr-10 text-center">
+                        <input type="range" min="1" max="100" value="10" class="slider p-3 w-6/12" onclick="genPass()"
+                            id="passRange">
+
+
+                    </div>
+                    <div class=" text-left w-3/12 font-bold">
+                        <input class="p-3 mt-4 " type="checkbox" id="Uppercase" onclick="genPass()" name="Uppercase"
+                            checked value="Uppercase">
+                        <label for="vehicle1"> Uppercase</label><br>
+                        <input class="p-3 mt-4" type="checkbox" id="Lowercase" onclick="genPass()" name="Lowercase"
+                            checked value="Lowercase">
+                        <label for="vehicle1"> Lowercase</label><br>
+                        <input class="p-3 mt-4 " type="checkbox" id="Numbers" onclick="genPass()" name="Numbers" checked
+                            value="Numbers">
+                        <label for="vehicle2">Numbers</label><br>
+                        <input class="p-3 mt-4 " type="checkbox" id="Symbols" onclick="genPass()" name="Symbols"
+                            value="Symbols">
+                        <label for="vehicle3"> Symbols</label><br>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- copy button start -->
+            <div class="flex justify-center">
+                <button class="py-3 mt-10 px-10 text-white bg-red-600 rounded-xl shadow-xl " id="gPass"
+                    onclick="genPass()">Copy Your
+                    Password</button>
+
+            </div>
+
+        </section>
+    </main>
+
+
+    <!-- java script functions -->
+    <script>
+
+        // main ganarator 
+
+        const slider = document.getElementById("passRange");
+        const output = document.getElementById("demo");
+        output.value = slider.value;
+
+        slider.oninput = function () {
+            output.value = this.value;
+        }
+
+
+        onload
+
+        function genPass() {
+
+            const lengthPass = document.getElementById("passRange").value;
+
+            let Allowed = {
+                Uppers: "QWERTYUIOPASDFGHJKLZXCVBNM",
+                Lowers: "qwertyuiopasdfghjklzxcvbnm",
+                Numbers: "1234567890",
+                Symbols: "!@#$%^&*"
+            }
+
+            const addUppercase = document.getElementById("Uppercase");
+            const addLowercase = document.getElementById("Lowercase");
+            const addNumbers = document.getElementById("Numbers");
+            const addSymbols = document.getElementById("Symbols");
+
+            if (addUppercase.checked == true) { }
+            else {
+                Allowed.Uppers = "";
+            }
+
+            if (addLowercase.checked == true) { }
+            else {
+                Allowed.Lowers = "";
+            }
+
+            if (addNumbers.checked == true) { }
+            else {
+                Allowed.Numbers = "";
+            }
+
+            if (addSymbols.checked == true) { }
+            else {
+                Allowed.Symbols = "";
+            }
+
+            const getRandomCharFromString = (str) => str.charAt(Math.floor(Math.random() * str.length))
+
+
+            let pwd = "";
+
+
+            for (let i = pwd.length; i < lengthPass; i++)
+                pwd += getRandomCharFromString(Object.values(Allowed).join('')); //fill the rest of the pwd with random characters
+
+
+
+            document.getElementById("newPass").value = pwd;
+            navigator.clipboard.writeText(pwd);
+        }
+
+
+
+    </script>
+</body>
+
+</html>
