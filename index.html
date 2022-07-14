@@ -7,6 +7,7 @@
     <link href="./output.css" rel="stylesheet">
 </head>
 
+
 <body onload="genPass()" class=" bg-slate-100 ">
 
     <div id="toast-success"
@@ -44,7 +45,7 @@
             <div class="shadow-2xl border-b-4 border-b-green-400 mt-10 rounded-xl bg-white p-5 flex items-center">
 
 
-                <input type="text" name="" id="newPass" class="w-5/6 md:w-11/12">
+                <input type="textarea" name="" id="newPass" class="w-5/6 md:w-11/12">
 
 
                 <div class="w-1/6 md:w-1/12 flex justify-between">
@@ -75,7 +76,7 @@
                     <div class="slidecontainer w-1/2 md:w-8/12  flex flex-col  md:flex-row items-center justify-center">
                         <input type="text" id="demo" class=" border-2 rounded-xl w-5/12 p-3 mr-10 text-center mx-auto">
                         <input type="range" min="1" max="100" value="10" class="slider p-3 md:w-6/12"
-                            onclick="genPass()" id="passRange">
+                            onchange="genPass()" id="passRange">
 
 
                     </div>
@@ -142,7 +143,9 @@
             const addNumbers = document.getElementById("Numbers");
             const addSymbols = document.getElementById("Symbols");
 
-            if (addUppercase.checked == true) { }
+            if (addUppercase.checked == true) {
+
+            }
             else {
                 Allowed.Uppers = "";
             }
@@ -166,8 +169,22 @@
 
 
             let pwd = "";
+            if (addUppercase.checked == true) {
+                pwd += getRandomCharFromString(Allowed.Numbers);
+            }
 
+            if (addLowercase.checked == true) {
+                pwd += getRandomCharFromString(Allowed.Lowers);
+            }
 
+            if (addNumbers.checked == true) {
+                pwd += getRandomCharFromString(Allowed.Numbers);
+            }
+            if (addSymbols.checked == true) {
+                pwd += getRandomCharFromString(Allowed.Symbols);
+            }
+
+            
             for (let i = pwd.length; i < lengthPass; i++)
                 pwd += getRandomCharFromString(Object.values(Allowed).join('')); //fill the rest of the pwd with random characters
 
@@ -189,5 +206,6 @@
         });
     </script>
 </body>
+    
 
 </html>
